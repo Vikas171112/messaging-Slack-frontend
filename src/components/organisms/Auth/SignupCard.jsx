@@ -13,12 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignupCard() {
-  const [signupDetails, setSignupDetails] = useState({
-    email: "",
-    password: "",
-    username: "",
-  });
+function SignupCard({ signupDetails, setSignupDetails }) {
   const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm ">

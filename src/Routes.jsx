@@ -4,6 +4,8 @@ import Auth from "./pages/Auth/Auth";
 import SignupCard from "./components/organisms/Auth/SignupCard";
 import SiginCard from "./components/organisms/Auth/SiginCard";
 import NotFound from "./pages/NotFound/NotFound";
+import SignupContainer from "./components/organisms/Auth/signupContainer";
+import SignInContainer from "./components/organisms/Auth/SignInContainer";
 
 function AppRoute() {
   return (
@@ -12,7 +14,7 @@ function AppRoute() {
         path="/auth/signup"
         element={
           <Auth>
-            <SignupCard />
+            <SignupContainer />
           </Auth>
         }
       />
@@ -20,7 +22,7 @@ function AppRoute() {
         path="/auth/signin"
         element={
           <Auth>
-            <SiginCard />
+            <SignInContainer />
           </Auth>
         }
       />

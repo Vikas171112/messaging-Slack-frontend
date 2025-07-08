@@ -14,11 +14,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SiginCard() {
-  const [signindetails, setSignindetails] = useState({
-    email: "",
-    password: "",
-  });
+function SiginCard({ signindetails, setSignindetails }) {
   const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm">
