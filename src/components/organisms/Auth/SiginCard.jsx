@@ -12,12 +12,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SiginCard() {
   const [signindetails, setSignindetails] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -80,7 +82,12 @@ function SiginCard() {
       <Separator />
       <p>
         New to Slack?
-        <span className="text-blue-500 cursor-pointer text-center text-lg font-semibold hover:underline">
+        <span
+          className="text-blue-500 cursor-pointer text-center text-lg font-semibold hover:underline"
+          onClick={() => {
+            navigate("/auth/signup");
+          }}
+        >
           Signup
         </span>
       </p>

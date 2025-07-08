@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignupCard() {
   const [signupDetails, setSignupDetails] = useState({
@@ -18,6 +19,7 @@ function SignupCard() {
     password: "",
     username: "",
   });
+  const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm ">
       <CardHeader>
@@ -104,7 +106,12 @@ function SignupCard() {
       <Separator />
       <p>
         Already have an account?
-        <span className="text-blue-500 cursor-pointer text-center text-lg font-semibold hover:underline">
+        <span
+          onClick={() => {
+            navigate("/auth/signin");
+          }}
+          className="text-blue-500 cursor-pointer text-center text-lg font-semibold hover:underline"
+        >
           Signin
         </span>
       </p>
