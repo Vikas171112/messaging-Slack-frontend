@@ -1,3 +1,4 @@
+// SignupCard.jsx
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,10 +11,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignupCard({ signupDetails, setSignupDetails }) {
+function SignupCard({
+  signupDetails,
+  setSignupDetails,
+  onSubmit,
+  validationError,
+}) {
   const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm ">
@@ -22,9 +27,28 @@ function SignupCard({ signupDetails, setSignupDetails }) {
         <CardDescription>
           Enter your Email to Create Your Account
         </CardDescription>
+
+        {validationError.message && (
+          <div
+            className="
+              bg-destructive/15  /* Light background for the error message */
+              text-destructive   /* Default text color for errors (usually defined in shadcn) */
+              p-3                /* Padding inside the error box */
+              rounded-md         /* Rounded corners */
+              mt-2               /* Margin top to separate from description */
+              text-sm            /* Smaller font size for error text */
+              font-medium        /* Slightly bolder text */
+              flex items-center  /* For vertical alignment if adding an icon */
+              justify-center     /* For horizontal centering of content */
+              text-center        /* Ensures the text itself is centered */
+            "
+          >
+            <p>{validationError.message}</p>
+          </div>
+        )}
       </CardHeader>
       <CardContent>
-        <form action="">
+        <form onSubmit={onSubmit}>
           <div className="flex flex-col gap-4">
             <div className="grid ">
               <Label htmlFor="email">Email</Label>
@@ -44,7 +68,6 @@ function SignupCard({ signupDetails, setSignupDetails }) {
               <Input
                 id="password"
                 type="password"
-                // placeholder="m@example.com"
                 required
                 value={signupDetails.password}
                 onChange={(e) =>
@@ -56,17 +79,16 @@ function SignupCard({ signupDetails, setSignupDetails }) {
               />
             </div>
             <div className="grid">
-              <Label htmlFor="password"> Confirm Password</Label>
+              <Label htmlFor="confirmPassword"> Confirm Password</Label>
               <Input
-                id="password"
+                id="confirmPassword"
                 type="password"
-                // placeholder="m@example.com"
                 required
-                value={signupDetails.password}
+                value={signupDetails.confirmPassword}
                 onChange={(e) =>
                   setSignupDetails({
                     ...signupDetails,
-                    password: e.target.value,
+                    confirmPassword: e.target.value,
                   })
                 }
               />
@@ -75,8 +97,7 @@ function SignupCard({ signupDetails, setSignupDetails }) {
               <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
-                type="username"
-                // placeholder="m@example.com"
+                type="text"
                 required
                 value={signupDetails.username}
                 onChange={(e) =>
@@ -87,27 +108,28 @@ function SignupCard({ signupDetails, setSignupDetails }) {
                 }
               />
             </div>
+
+            <Button type="submit" className="w-full mt-2">
+              Continue
+            </Button>
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex-col ">
-        <Button type="submit" className="w-full">
-          Continue
-        </Button>
+      <CardFooter className="flex-col gap-2">
         <Button variant="outline" className="w-full">
           Signup with Google
         </Button>
-      </CardFooter>{" "}
+      </CardFooter>
       <Separator />
-      <p>
-        Already have an account?
+      <p className="p-4 text-center text-sm text-muted-foreground">
+        Already have an account?{" "}
         <span
           onClick={() => {
             navigate("/auth/signin");
           }}
-          className="text-blue-500 cursor-pointer text-center text-lg font-semibold hover:underline"
+          className="text-blue-500 cursor-pointer font-semibold hover:underline"
         >
-          Signin
+          Sign In
         </span>
       </p>
     </Card>
