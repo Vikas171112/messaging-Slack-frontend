@@ -20,6 +20,10 @@ function SiginCard({
   setSignindetails,
   onFormSubmit,
   validationError,
+  isError,
+  isPending,
+  isSuccess,
+  error,
 }) {
   const navigate = useNavigate();
   return (

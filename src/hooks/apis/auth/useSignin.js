@@ -1,3 +1,4 @@
+import { signinRequest } from "@/apis/auth";
 import { useMutation } from "@tanstack/react-query";
 
 export const usesignIn = () => {
@@ -6,12 +7,13 @@ export const usesignIn = () => {
     isPending,
     isSuccess,
     error,
-    mutate: signinMutation,
+    mutateAsync: signinMutation,
   } = useMutation({
+    mutationFn: signinRequest,
     onSuccess: () => {
       console.log("data", data);
     },
-    onError: () => {
+    onError: (error) => {
       console.log("error", error);
     },
   });

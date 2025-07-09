@@ -18,6 +18,9 @@ function SignupCard({
   setSignupDetails,
   onSubmit,
   validationError,
+  isPending,
+  isSuccess,
+  error,
 }) {
   const navigate = useNavigate();
   return (
@@ -109,8 +112,8 @@ function SignupCard({
               />
             </div>
 
-            <Button type="submit" className="w-full mt-2">
-              Continue
+            <Button type="submit" className="w-full mt-2" disabled={isPending}>
+              {isPending ? "Signning up ....." : "Continue"}
             </Button>
           </div>
         </form>

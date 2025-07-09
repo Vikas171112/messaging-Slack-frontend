@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SiginCard from "./SiginCard";
+import { usesignIn } from "@/hooks/apis/auth/useSignin";
 
 function SignInContainer() {
   const [signindetails, setSignindetails] = useState({
@@ -7,14 +8,26 @@ function SignInContainer() {
     password: "",
   });
   const [validationError, setValidationError] = useState({
-    message: "Some error",
+    message: "",
   });
+  const { isError, isPending, isSuccess, error, signinMutation } = usesignIn();
   async function signinFormSubmit(e) {
     e.preventDefault();
     if (!signindetails.email || !signindetails.password) {
       setValidationError({ massage: "Please fill al the fields" });
     }
-    console.log("form Submitted suucesfully", signindetails);
+    try {
+      await signinMutation({
+        email: signindetails.email,
+        password: signindetails.password,
+      });
+      console.log("form Submitted suucesfully", signindetails);
+    } catch (apiError) {
+      console.error("API Error during signin:", apiError);
+      setValidationError({
+        message: error?.message || "Signup failed. Please try again.",
+      });
+    }
   }
   return (
     <SiginCard
@@ -22,6 +35,10 @@ function SignInContainer() {
       setSignindetails={setSignindetails}
       onFormSubmit={signinFormSubmit}
       validationError={validationError}
+      isPending={isPending}
+      isSuccess={isSuccess}
+      isError={isError}
+      error={error}
     />
   );
 }
