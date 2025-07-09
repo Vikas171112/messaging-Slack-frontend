@@ -10,7 +10,9 @@ export const usesignIn = () => {
     mutateAsync: signinMutation,
   } = useMutation({
     mutationFn: signinRequest,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem("user", data.data);
+      localStorage.setItem("token", data.data.token);
       console.log("data", data);
     },
     onError: (error) => {
