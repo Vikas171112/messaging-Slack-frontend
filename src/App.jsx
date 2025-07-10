@@ -3,14 +3,17 @@ import SignupCard from "./components/organisms/Auth/SignupCard";
 import AppRoute from "@/Routes";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AppContextProvider } from "./context/Auth/AppContextProvider";
 
 const queryClient = new QueryClient();
 function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <AppRoute />
-        <Toaster />
+        <AppContextProvider>
+          <AppRoute />
+          <Toaster />
+        </AppContextProvider>
       </QueryClientProvider>
     </>
   );
