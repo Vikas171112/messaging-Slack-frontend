@@ -25,6 +25,9 @@ export const CreateWorkspaceModals = () => {
       console.log("form Submitted successfully");
     } catch (error) {
       console.log("we have error coming up");
+    } finally {
+      setOpenCreateWorkspaceModal(false);
+      setWorkspaceName("");
     }
   }
 
