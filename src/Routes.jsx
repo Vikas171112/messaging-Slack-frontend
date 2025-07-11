@@ -6,6 +6,7 @@ import SiginCard from "./components/organisms/Auth/SiginCard";
 import NotFound from "./pages/NotFound/NotFound";
 import SignupContainer from "./components/organisms/Auth/signupContainer";
 import SignInContainer from "./components/organisms/Auth/SignInContainer";
+import Home from "./pages/Home/Home";
 
 function AppRoute() {
   return (
@@ -26,6 +27,7 @@ function AppRoute() {
           </Auth>
         }
       />
+      <Route path="/home" element={<Home />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );
