@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import SignupContainer from "./components/organisms/Auth/signupContainer";
 import SignInContainer from "./components/organisms/Auth/SignInContainer";
 import Home from "./pages/Home/Home";
+import { WorkSpaceLayout } from "./pages/Layouts/WorkSpaceLayout";
 
 function AppRoute() {
   return (
@@ -26,6 +27,10 @@ function AppRoute() {
             <SignInContainer />
           </Auth>
         }
+      />
+      <Route
+        path="/workspaces"
+        element={<WorkSpaceLayout>WorkSpace</WorkSpaceLayout>}
       />
       <Route path="/home" element={<Home />} />
       <Route path="/*" element={<NotFound />} />

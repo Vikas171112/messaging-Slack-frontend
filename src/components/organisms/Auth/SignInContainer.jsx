@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SiginCard from "./SiginCard";
 import { usesignIn } from "@/hooks/apis/auth/useSignin";
+import { useNavigate } from "react-router-dom";
 
 function SignInContainer() {
   const [signindetails, setSignindetails] = useState({
@@ -10,6 +11,7 @@ function SignInContainer() {
   const [validationError, setValidationError] = useState({
     message: "",
   });
+  const navigate = useNavigate();
   const { isError, isPending, isSuccess, error, signinMutation } = usesignIn();
   async function signinFormSubmit(e) {
     e.preventDefault();
@@ -17,10 +19,11 @@ function SignInContainer() {
       setValidationError({ massage: "Please fill al the fields" });
     }
     try {
-      await signinMutation({
-        email: signindetails.email,
-        password: signindetails.password,
-      });
+      // await signinMutation({
+      //   email: signindetails.email,
+      //   password: signindetails.password,
+      // });
+      navigate("/workspaces");
       console.log("form Submitted suucesfully", signindetails);
     } catch (apiError) {
       console.error("API Error during signin:", apiError);
