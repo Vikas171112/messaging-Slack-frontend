@@ -1,4 +1,6 @@
+import WorkSpcePanelHeader from "@/components/molecules/Workspace/WorkSpcePanelHeader";
 import { WorkspaceNavBar } from "@/components/organisms/WorkSpace/WorkSpaceNavbar";
+import WorkSpacePanel from "@/components/organisms/WorkSpace/WorkSpacePanel";
 import WorkSpaceSideBar from "@/components/organisms/WorkSpace/WorkSpaceSideBar";
 import {
   ResizableHandle,
@@ -23,9 +25,9 @@ export const WorkSpaceLayout = ({ children }) => {
               defaultSize={20}
               minSize={11}
             >
-              <div>Sidebar</div>
+              <WorkSpacePanel />
             </ResizablePanel>
-            <ResizableHandle />
+            <ResizableHandle withHandle />
             <ResizablePanel minSize={20}>{children}</ResizablePanel>
           </ResizablePanelGroup>
         </div>
