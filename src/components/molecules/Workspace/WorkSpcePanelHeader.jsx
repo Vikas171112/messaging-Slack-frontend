@@ -6,12 +6,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useCreateChannelContext } from "@/hooks/Channel/useCreateChannelHook";
 import { useWorkSpacePreference } from "@/hooks/Workspace/useWorkSpacePreference";
 import { ChevronDownIcon } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 function WorkSpcePanelHeader() {
   const { setOpenPreferenceModel } = useWorkSpacePreference();
+  const { openCreateChannelModal, setOpenCreateChannelModal } =
+    useCreateChannelContext();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,11 +29,18 @@ function WorkSpcePanelHeader() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent side="bottom" align="start" className="w-64">
-        <DropdownMenuItem className="size-full ">Item 1</DropdownMenuItem>
+        <DropdownMenuItem
+          className="size-full "
+          onClick={() => {
+            setOpenCreateChannelModal(true);
+            console.log("Clicked", openCreateChannelModal);
+          }}
+        >
+          Create Channel
+        </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer py-2"
           onClick={() => {
-            console.log("Button Clicked");
             setOpenPreferenceModel(true);
           }}
         >
